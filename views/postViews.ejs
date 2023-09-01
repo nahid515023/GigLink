@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>post</title>
+
+    <style>
+        .post {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .post-content {
+            margin-bottom: 20px;
+        }
+
+        .post-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-date {
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .total-bids {
+            margin-left: 10px;
+            color: #888;
+        }
+
+        .bid-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .bid-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            height: 50px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .comment-section {
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .comment {
+            margin-bottom: 10px;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="post">
+            <div class="post-header">
+                <img src="<%= posts[i].jobPosterId %>" alt="Avatar" class="post-avatar">
+                <div>
+                    <h5> <%= posts[0].name %></h5>
+                    <div class="post-info">
+                        <strong>Posted on:</strong>
+                        <span class="post-date" id="post-date"></span>
+                        <span class="total-bids">0 bids</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content p-4">
+                
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula diam id metus elementum
+                    iaculis.</p>
+                
+            </div>
+            <div class="bid-button-container">
+                <button class="bid-button" data-toggle="modal" data-target="#bidModal">Bid</button>
+            </div>
+            <div class="comment-section">
+                <div class="comment">
+                    <img src="https://via.placeholder.com/40" alt="Avatar" class="comment-avatar">
+                    <div class="comment-content">
+                        <h6>Jane Smith</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="https://via.placeholder.com/40" alt="Avatar" class="comment-avatar">
+                    <div class="comment-content">
+                        <h6>Mike Johnson</h6>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bid Modal -->
+    <div class="modal fade" id="bidModal" tabindex="-1" role="dialog" aria-labelledby="bidModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bidModalLabel">Place a Bid</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="bidForm">
+                        <div class="form-group">
+                            <label for="bidPrice">Bid Price:</label>
+                            <input type="number" class="form-control" id="bidPrice" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" id="comment" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitBid()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>
+        // Set the post date and time
+        var postDateElement = document.getElementById("post-date");
+        var currentDate = new Date();
+        postDateElement.textContent = currentDate.toLocaleString();
+
+        // Initialize total bids count
+        var totalBidsCount = 0;
+
+        // Function to submit the bid
+        function submitBid() {
+            var bidPrice = document.getElementById("bidPrice").value;
+            var comment = document.getElementById("comment").value;
+
+            if (bidPrice && comment) {
+                // Create a new comment element
+                var newComment = document.createElement("div");
+                newComment.className = "comment";
+                newComment.innerHTML = `
+              <img src="https://via.placeholder.com/40" alt="Avatar" class="comment-avatar">
+              <div class="comment-content">
+                <h6>Your Name</h6>
+                <p>${comment}</p>
+              </div>
+            `;
+
+                // Append the new comment to the comment section
+                var commentSection = document.querySelector(".comment-section");
+                commentSection.appendChild(newComment);
+
+                // Clear the bid form
+                document.getElementById("bidForm").reset();
+
+                // Close the bid modal
+                $('#bidModal').modal('hide');
+
+                // Increment the total bids count
+                totalBidsCount++;
+                var totalBidsElement = document.querySelector(".total-bids");
+                totalBidsElement.textContent = totalBidsCount + (totalBidsCount === 1 ? " bid" : " bids");
+            }
+        }
+    </script>
+</body>
+
+</body>
+
+</html>

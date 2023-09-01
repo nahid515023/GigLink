@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <header>
+        <%- include('../views/header2'); %>
+    </header>
+    <div class="container" style="margin-top: 6%; margin-bottom: 6%;">
+        <div class="card my-4 ">
+            <div class=" card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <img src="<%= profileInfo[0].image %>" class="rounded-circle me-2 mt-0"
+                                alt="profile picture" width="80" height="80">
+                            <div class="text-gray" style="line-height:1em">
+                                <h5 class="card-title mb-0">
+                                    <%= profileInfo[0].name %>
+                                </h5>
+                                <i class="fa-solid fa-shop"></i>
+                                <a href="#" class="text-muted d-inline-block text-decoration-none mb-2"><small>
+                                        <%=data[0].category%>
+                                    </small></a>
+                                <br>
+
+                                <i class="fa-solid fa-clock"></i>
+                                <p class="card-subtitle mb-2 text-muted d-inline-block"><small>
+                                        <%= new Date(data[0].postTime).toLocaleString() %>
+                                    </small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <hr> -->
+                    <div class="mx-3 p-5">
+                        <p class="card-text p-3">
+                            <%=data[0].text%>
+                        </p>
+                    </div>
+                    <div class="bid-button-container d-flex justify-content-center align-items-center">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#bidModal">Bid</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Bid Modal -->
+        <div class="modal fade" id="bidModal" tabindex="-1" role="dialog" aria-labelledby="bidModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bidModalLabel">Place a Bid</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="bidForm">
+                            <div class="form-group">
+                                <label for="bidPrice">Bid Price:</label>
+                                <input type="number" class="form-control" id="bidPrice" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bidPrice">Phone Number:</label>
+                                <input type="number" class="form-control" id="number" required>
+                            </div>
+                            <input type="hidden" id="postId" value="<%= data[0].postId %>">
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" id="comment" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="submitBid()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    </div>
+
+    <footer>
+        <%- include('../views/footer'); %>
+    </footer>
+
+
+    <script src="../javascript/navbar.js"></script>
+    <!-- Add this script at the end of your HTML, just before </body> -->
+    <script>
+        function submitBid() {
+            // Get the values from the input fields
+            const bidPrice = document.getElementById("bidPrice").value;
+            const comment = document.getElementById("comment").value;
+            const postId = document.getElementById("postId").value;
+            const number = document.getElementById("number").value;
+
+            // Create a data object to send to the server
+            const data = {
+                bidPrice: bidPrice,
+                comment: comment,
+                number: number,
+                postId: postId
+            };
+
+            // Make an AJAX POST request to the server
+            fetch('/jobFeed/submit_bid', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Response from server:', result);
+                    // You can handle the response from the server here
+                })
+                .catch(error => {
+                    console.error('Error sending data to server:', error);
+                });
+
+            // Close the modal
+            $('#bidModal').modal('hide');
+        }
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

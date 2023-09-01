@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Moderator Page</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Include custom CSS -->
+  <style>
+    body {
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 align="center"><strong>Moderator</strong></h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>NID Number</th>
+        <th>NID Picture</th>
+        <th>Trade License Number</th>
+        <th>Trade License Picture</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="userTableBody">
+      <!-- Table body will be generated here -->
+      <% for(var i=0; i<users.length; i++) { %>
+        <tr>
+          <td>
+            <%= users[i].email %>
+          </td>
+          <td>
+            <%= users[i].nid_number %>
+          </td>
+          <td>
+            <a href="<%= users[i].nid_picture %>">
+              <%= users[i].nid_picture %>
+            </a>
+          </td>
+          <td>
+            <%= users[i].trade_license_number %>
+          </td>
+          <td><a href="<%= users[i].trade_license_picture %>">
+              <%= users[i].trade_license_picture %>
+            </a></td>
+          <td>
+            <a href="/moderator/reject/<%= users[i].email %>" class="btn btn-danger">Reject</a>
+            <a href="/moderator/accept/<%= users[i].email %>" class="btn btn-primary">Accept</a>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
+</body>
+
+</html>

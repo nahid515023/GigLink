@@ -1,0 +1,56 @@
+<!-- Main HTML file -->
+<html>
+
+<head>
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/regi.css">
+</head>
+
+<body>
+  
+    <div class="container" style="margin-top: 10%;">
+        <div class="row">
+            <div class="col-md-5 my-3 p-5 mx-auto " style="background-color:white;border-radius: 2rem;">
+                <form class="registration-form" id="jp-form" action="/signup/client" method="POST">
+                    <div class="mb-4 text-center">
+                        <h3>Sign up to hire talent</h3>
+                        <hr />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirm-password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm-password" name="confirm" required>
+                    </div>
+                    <% if (msg) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= msg %>
+                            <% msg="" %>
+                        </div>
+                        <% } %>
+                            <div class="text-center d-grid me-5 mt-5 ms-5">
+                                <button type="submit" class="btn btn-primary btn-block mb-5 gap-5">Register</button>
+                            </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/javascript/regi.js">
+
+    </script>
+</body>
+
+</html>
