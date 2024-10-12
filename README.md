@@ -67,9 +67,29 @@ The project utilizes the following packages:
 - `mysql`: ^2.18.1
 - `nodemon`: ^2.0.22
 
+## Project View
+
+![1](https://github.com/user-attachments/assets/70def5f3-0b78-4a06-8289-f27d34fc3908)
+![5](https://github.com/user-attachments/assets/9affc7d8-a35e-494a-82d7-168e6686b289)
+![6](https://github.com/user-attachments/assets/4ef4b6b1-0859-4e43-ae40-302edb886774)
+![7](https://github.com/user-attachments/assets/8c551cad-ca3d-4021-9527-8a5dfd36c45e)
+![11](https://github.com/user-attachments/assets/5d45da2d-0577-4734-b165-501bc1f53fb4)
+![12](https://github.com/user-attachments/assets/ad2bf506-9743-4b89-b1fd-ace189e351aa)
+![13](https://github.com/user-attachments/assets/a2811916-8015-4b76-9eb9-647bb065bb87)
+
+## Project Presentation File
+
+  [GigLink.pptx](https://github.com/user-attachments/files/17351459/GigLink.pptx)
+
+  
+
 ## Contributing
 
+
 Feel free to contribute to the project by submitting a pull request or opening an issue.
+
+
+
 
 ## License
 
