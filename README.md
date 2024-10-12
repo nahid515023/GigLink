@@ -1,19 +1,15 @@
-Here is a sample GitHub README file based on the information provided:
-
----
-
 # GigLink
 
 ## Project Overview
 
-GigLink is a web-based platform designed to connect job posters with skilled individuals and shops in a specific area. Job posters can post part-time jobs, and registered bidders can bid on those jobs. The poster can select a bidder from the available candidates. GigLink aims to create a seamless and efficient way for individuals to find part-time work in their local communities.
+GigLink is a web-based platform that connects job posters with skilled individuals and shops in a specific area. Job posters can post part-time jobs, and registered bidders can bid on those jobs. The poster can select a bidder from the available candidates. GigLink aims to create a seamless and efficient way for individuals to find part-time work in their local communities.
 
 ## Features
 
 - **Job Posting**: Job posters can create job listings under various categories.
 - **Bidding System**: Registered bidders can submit bids on posted jobs.
 - **Selection Process**: Job posters can review and select a bidder from the list of applicants.
-- **Payment**: No online payment system is involved; payment is made in cash after the job is completed.
+- **Payment**: No online payment system is involved; payment is made in cash after completing the job.
 
 ## Installation
 
