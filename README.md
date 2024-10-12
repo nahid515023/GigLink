@@ -18,13 +18,13 @@ To set up the project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/giglink.git
+   git clone https://github.com/nahid515023/GigLink.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd giglink
+  cd GigLink
    ```
 
 3. Install the required dependencies:
@@ -66,15 +66,6 @@ The project utilizes the following packages:
 - `multer`: ^1.4.5-lts.1
 - `mysql`: ^2.18.1
 - `nodemon`: ^2.0.22
-
-## Project Planning
-
-The development of GigLink is structured over 12 weeks:
-
-- **Weeks 1-4**: Front-end development, including login, signup, profile, job posting, and admin pages.
-- **Weeks 5-10**: Back-end development, database design, and integration with front-end components.
-- **Week 11**: Testing and quality assurance across various devices and browsers.
-- **Week 12**: Deployment and final launch of the website.
 
 ## Contributing
 
